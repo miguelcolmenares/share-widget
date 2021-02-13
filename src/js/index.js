@@ -17,7 +17,7 @@ class ShareWidget {
 			title: document.getElementsByTagName("title")[0].innerHTML,
 			url: window.location.href,
 		};
-		this.setStyles();
+		this._setVariables();
 		this.render();
 	}
 
@@ -59,8 +59,17 @@ class ShareWidget {
 	async _styles() {
 		return await fetch("./dist/css/share-widget.css").then(res => res.text()).then(style => `<style>${style}</style>`);
 	}
+	_setVariables() {
+		if (this.backgroundTitle.length)
+			document.documentElement.style.setProperty("--share-title-bg", this.backgroundTitle);
+		if (this.colorIcon.length)
+			document.documentElement.style.setProperty("--share-icon-color", this.colorIcon);
+		if (this.colorTitle.length)
+			document.documentElement.style.setProperty("--share-title-color", this.colorTitle);
+	}
 	async render() {
 		if (!this.buttons.length) return;
+
 		const buttonsContainer = document.createElement("section");
 		buttonsContainer.classList.add("sh-w_l");
 
@@ -73,14 +82,6 @@ class ShareWidget {
 
 		document.body.insertAdjacentHTML("beforeend", `${await this._styles()}`);
 		document.body.append(this.widget);
-	}
-	setStyles() {
-		if (this.backgroundTitle.length)
-			document.documentElement.style.setProperty("--share-title-bg", this.backgroundTitle);
-		if (this.colorIcon.length)
-			document.documentElement.style.setProperty("--share-icon-color", this.colorIcon);
-		if (this.colorTitle.length)
-			document.documentElement.style.setProperty("--share-title-color", this.colorTitle);
 	}
 }
 
@@ -96,7 +97,7 @@ class ShareButton {
 		this.name = name;
 		this.network = network,
 		this.shareData = {
-			title: document.getElementsByTagName("title")[0].innerHTML,
+			title: document.title,
 			url: window.location.href,
 		};
 	}
