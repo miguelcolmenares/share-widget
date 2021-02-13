@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Widget</title>
+</head>
+<body>
+    <h1>Share widget</h1>
+    <script type="text/javascript">
+        !function (s, h, a, r, e, w) {
+            s.shareWidget || (
+                e = h.createElement(a),
+                e.src = r,
+                w = h.getElementsByTagName(a)[0],
+                w.parentNode.insertBefore(e, w)
+            )
+        }(window, document, "script", "dist/js/share-widget.js");
+        window.onload = function () {
+            new shareWidget({
+                backgroundTitle: "#dd181c",
+                colorIcon: "#dd181c",
+                title: "Comparte en",
+                buttons: [{
+                        network: "whatsapp",
+                        name: "Whatsapp",
+                        color: "#18e27a"
+                    },
+                    {
+                        network: "facebook",
+                        name: "Facebook",
+                        color: "#3a559f"
+                    },
+                    {
+                        network: "twitter",
+                        name: "Twitter",
+                        color: "#55acee"
+                    },
+                    {
+                        network: "email",
+                        name: "Correo",
+                        color: "#000"
+                    }]
+            })
+        };
+    </script>
+</body>
+</html>
