@@ -11,12 +11,14 @@ class ShareWidget {
 		this.buttons = buttons,
 		this.colorIcon = colorIcon,
 		this.colorTitle = colorTitle,
-		this.title = title;
-		this.widget = document.createElement("div");
+		this.url = "https://cdn.jsdelivr.net/gh/miguelcolmenares/share-widget",
 		this.shareData = {
 			title: document.getElementsByTagName("title")[0].innerHTML,
 			url: window.location.href,
-		};
+		},
+		this.title = title,
+		this.version = "1.0.2",
+		this.widget = document.createElement("div");
 		this._setVariables();
 		this.render();
 	}
@@ -57,7 +59,13 @@ class ShareWidget {
 		return header;
 	}
 	async _styles() {
-		return await fetch("./dist/css/share-widget.css").then(res => res.text()).then(style => `<style>${style}</style>`);
+		const styles = document.createElement("style");
+		await fetch(`${this.url}@${this.version}/dist/css/share-widget.css`)
+			.then(res => res.text())
+			.then(style => {
+				return styles.append(style);
+			});
+		return document.head.append(styles);
 	}
 	_setVariables() {
 		if (this.backgroundTitle.length)
@@ -70,6 +78,8 @@ class ShareWidget {
 	async render() {
 		if (!this.buttons.length) return;
 
+		await this._styles();
+
 		const buttonsContainer = document.createElement("section");
 		buttonsContainer.classList.add("sh-w_l");
 
@@ -80,7 +90,6 @@ class ShareWidget {
 		this.widget.append(buttonsContainer);
 		this.widget.append(this._button());
 
-		document.body.insertAdjacentHTML("beforeend", `${await this._styles()}`);
 		document.body.append(this.widget);
 	}
 }
