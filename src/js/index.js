@@ -17,7 +17,7 @@ class ShareWidget {
 			url: window.location.href,
 		},
 		this.title = title,
-		this.version = "1.0.2",
+		this.version = "1.0.3",
 		this.widget = document.createElement("div");
 		this._setVariables();
 		this.render();
@@ -93,7 +93,6 @@ class ShareWidget {
 		document.body.append(this.widget);
 	}
 }
-
 class ShareButton {
 	constructor({
 		color = "",
@@ -106,7 +105,7 @@ class ShareButton {
 		this.name = name;
 		this.network = network,
 		this.shareData = {
-			title: document.title,
+			title: encodeURI(document.title),
 			url: window.location.href,
 		};
 	}
