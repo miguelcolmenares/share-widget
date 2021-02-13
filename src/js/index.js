@@ -87,8 +87,8 @@ class ShareWidget {
 class ShareButton {
 	constructor({
 		color = "",
-		network = "",
-		name = ""
+		name = "",
+		network = ""
 	}) {
 		this.button = document.createElement("a"),
 		this.color = color,
@@ -134,22 +134,22 @@ class ShareButton {
 					event: "ga_event",
 					category: "Widget Share",
 					action: `Click ${this.name}`,
-					label: this.name,
+					label: this.network,
 				});
 			}
 
 			switch (this.network) {
 				case "email":
-					url = `mailto:?to=&subject=${this.shareData.title}body=${this.shareData.url}`;
+					url = `mailto:?to=&subject=${this.shareData.title}&body=${this.shareData.url}`;
 					break;
 				case "facebook":
-					url = `http://www.facebook.com/sharer.php?display=popup&u=${this.shareData.url}`;
+					url = `https://www.facebook.com/sharer.php?display=popup&u=${this.shareData.url}&quote=${this.shareData.title}`;
 					break;
 				case "twitter":
-					url = `https://twitter.com/intent/tweet?url=${this.shareData.url}`;
+					url = `https://twitter.com/intent/tweet?text=${this.shareData.title}&url=${this.shareData.url}`;
 					break;
 				case "whatsapp":
-					url = ((iphone || android) ? "whatsapp://send?" : "https://web.whatsapp.com/send?") + `?text=${this.shareData.url}`;
+					url = ((iphone || android) ? "whatsapp://send?" : "https://web.whatsapp.com/send?") + `text=${this.shareData.title} ${this.shareData.url}`;
 					break;
 			}
 			window.open(
