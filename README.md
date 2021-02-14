@@ -1,4 +1,6 @@
-# Share widget v1.0.3 ![alt text](https://data.jsdelivr.com/v1/package/gh/miguelcolmenares/share-widget/badge "JsDelivr")
+# Share widget 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/miguelcolmenares/share-widget) 
+![alt text](https://data.jsdelivr.com/v1/package/gh/miguelcolmenares/share-widget/badge "JsDelivr")
 
 > Add a flotating widget to open Share options
 
