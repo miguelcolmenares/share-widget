@@ -2,7 +2,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/miguelcolmenares/share-widget) 
 ![alt text](https://data.jsdelivr.com/v1/package/gh/miguelcolmenares/share-widget/badge "JsDelivr")
 
-> Add a flotating widget to open Share options
+> Add a floating widget to open Share options
 
 ## Getting Started
 
@@ -47,41 +47,41 @@ Add this javascript at the end of your page:
     </script>
 ```
 
-### Options
+## Options
 
-#### backgroundTitle
-Type: `String`
+### backgroundTitle
+Type: `String`    
 Default: `""`
 
-#### buttons
-Type: `Array`
+### buttons
+Type: `Array`   
 Default: `[]`
 
-#### colorIcon
+### colorIcon
+Type: `String`  
+Default: `""`
+
+### colorTitle
 Type: `String`
 Default: `""`
 
-#### colorTitle
+### title
 Type: `String`
 Default: `""`
 
-#### title
+## Button Options
+
+### color
 Type: `String`
 Default: `""`
 
-### Button Options
-
-#### color
-Type: `String`
+### name
+Type: `String`   
 Default: `""`
 
-#### name
-Type: `String`
-Default: `""`
-
-#### network
-Type: `String`
-Default: `""`
+### network
+Type: `String`      
+Default: `""`   
 Posibble values: `email`, `facebook`, `twitter`, `whatsapp`
 
 ## Example:
