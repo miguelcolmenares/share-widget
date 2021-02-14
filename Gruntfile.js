@@ -22,10 +22,9 @@ module.exports = function (grunt) {
         },
         cssmin: {
             options: {
-                banner: "/*! <%= pkg.name %> - v<%= pkg.version %> */",
+                banner: "'/*! <%= pkg.name %> - v<%= pkg.version %> */'",
                 compatibility: "ie8",
                 report: "gzip",
-                inline: ["local"],
                 level: {
                     1: {
                         all: true
@@ -46,13 +45,33 @@ module.exports = function (grunt) {
             dist : {
                 options: {
                     compress: true,
-                    paths: ["dist/css"],
-                    plugins: [
-                        new (require("less-plugin-autoprefix"))({ browsers: ["last 2 versions"] })
-                    ]
+                    modifyVars:{
+                        cdnPath: "'<%= pkg.cdn %>@<%= pkg.version %>'",
+                        version: "'<%= pkg.version %>'"
+                    },
+                    paths: ["dist/css"]
                 },
                 files: {
                     "dist/css/<%= pkg.name %>.css": "src/less/index.less"
+                }
+            }
+        },
+        "string-replace": {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: "dist/",
+                    src: "js/*",
+                    dest: "dist/"
+                }],
+                options: {
+                    replacements: [{
+                        pattern: /\{\{(version)\}\}/igm,
+                        replacement: "<%= pkg.version %>"
+                    }, {
+                        pattern: /\{\{(url)\}\}/igm,
+                        replacement: "<%= pkg.cdn %>"
+                    }]
                 }
             }
         },
@@ -63,7 +82,6 @@ module.exports = function (grunt) {
                     "<%= grunt.template.today(\"yyyy-mm-dd\") %> */",
                 report: "gzip",
                 compress: true,
-                sourceMap: true,
                 exportAll: true,
             },
             main: {
@@ -80,7 +98,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-contrib-cssmin");
     grunt.loadNpmTasks("grunt-contrib-less");
+    grunt.loadNpmTasks("grunt-string-replace");
     grunt.loadNpmTasks("grunt-contrib-uglify-es");
 
-    grunt.registerTask("default", ["clean", "copy", "less", "cssmin", "uglify"]);
+    grunt.registerTask("default", ["clean", "copy", "less", "cssmin", "uglify", "string-replace"]);
 };

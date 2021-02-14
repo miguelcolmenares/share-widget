@@ -11,13 +11,13 @@ class ShareWidget {
 		this.buttons = buttons,
 		this.colorIcon = colorIcon,
 		this.colorTitle = colorTitle,
-		this.url = "https://cdn.jsdelivr.net/gh/miguelcolmenares/share-widget",
+		this.url = "{{url}}",
 		this.shareData = {
 			title: document.getElementsByTagName("title")[0].innerHTML,
 			url: window.location.href,
 		},
 		this.title = title,
-		this.version = "1.0.3",
+		this.version = "{{version}}",
 		this.widget = document.createElement("div");
 		this._setVariables();
 		this.render();
