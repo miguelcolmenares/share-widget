@@ -6,7 +6,6 @@
 	background: var(--share-white);
 	border-top-left-radius: 4px;
 	border-bottom-left-radius: 4px;
-	box-shadow: var(--share-black) -2px 0 6px;
 	font-family: @font-family;
 	font-size: 18px;
 	line-height: 21px;
@@ -24,8 +23,13 @@
 		text-rendering: optimizeLegibility;
 		letter-spacing: 0;
 	}
+    &.native {
+        top: 31vh;
+    }
     &.open {
+        box-shadow: var(--share-black) -2px 0 6px;
         transform: translate(0,-100%);
+        z-index: 9;
     }
     &_h {
         align-items: center;
@@ -108,10 +112,10 @@
             border: 1px solid var(--share-icon-color);
             color: var(--share-icon-color);
             border-radius: 50px;
-            font-size: 28px;
-            height: 46px;
-            line-height: 44px;
-            width: 46px;
+            font-size: 22px;
+            height: 40px;
+            line-height: 36px;
+            width: 40px;
         }
     }
 }

@@ -17,7 +17,7 @@
                 w.parentNode.insertBefore(e, w)
             )
         }(window, document, "script", "dist/js/share-widget.js");
-        window.onload = function () {
+        window.addEventListener('load', function () {
             new shareWidget({
                 header: {
                     background: "#dd181c",
@@ -47,7 +47,7 @@
                         color: "#000"
                     }]
             })
-        };
+        });
     </script>
 </body>
 </html>
