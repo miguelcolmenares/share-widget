@@ -39,8 +39,8 @@ class ShareWidget {
 			dataLayer.push({
 				event: "ga_event",
 				category: "Widget Share",
-				action: `Click Share ${(navigator.share) ? "mobile" : ""}`,
-				label: "Click Icono"
+				action: "Click Share",
+				label: `Click Icono${(navigator.share) ? " mobile" : ""}`
 			});
 		}
 		(navigator.share) ?
@@ -48,7 +48,7 @@ class ShareWidget {
 			await navigator.share(this.shareData).then(() => dataLayer.push({
 				event: "ga_event",
 				category: "Widget Share",
-				action: "Share mobile",
+				action: "Click Share",
 				label: "mobile",
 			})) :
 			this.widget.classList.toggle("open");
@@ -90,6 +90,7 @@ class ShareWidget {
 
 		const widget = document.createElement("div");
 		widget.classList.add("sh-w");
+		if (navigator.share) widget.classList.add("native");
 		widget.append(this._header());
 		widget.append(this._networks());
 		widget.append(this._button());
@@ -161,7 +162,7 @@ class ShareButton {
 				dataLayer.push({
 					event: "ga_event",
 					category: "Widget Share",
-					action: `Click ${this.name}`,
+					action: "Click Share",
 					label: this.network,
 				});
 			}
