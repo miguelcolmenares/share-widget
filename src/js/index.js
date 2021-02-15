@@ -1,96 +1,108 @@
 "use strict";
 class ShareWidget {
 	constructor({
-		backgroundTitle = "",
-		buttons = [],
-		colorIcon = "",
-		colorTitle = "",
-		title = "Comparte en"
+		button = {
+			color: ""
+		},
+		header = {
+			background: "",
+			color     : "",
+			title     : ""
+		},
+		networks = []
 	}) {
-		this.backgroundTitle = backgroundTitle,
-		this.buttons = buttons,
-		this.colorIcon = colorIcon,
-		this.colorTitle = colorTitle,
-		this.url = "{{url}}",
+		this.button = button,
+		this.header = header,
+		this.networks = networks,
+		this.package = "{{package}}",
 		this.shareData = {
-			title: document.getElementsByTagName("title")[0].innerHTML,
+			title: encodeURI(document.title),
 			url: window.location.href,
 		},
-		this.title = title,
+		this.url = "{{url}}",
 		this.version = "{{version}}",
-		this.widget = document.createElement("div");
+		this.$widget;
+		if (!this.networks.length) return;
 		this._setVariables();
 		this.render();
 	}
-
 	_button() {
-		const button = document.createElement("button");
-		const buttonIcon = document.createElement("span");
-		button.classList.add("sh-w_b");
-		buttonIcon.classList.add("sh-w-i-share");
-		button.append(buttonIcon);
-		button.title = this.title;
-		button.addEventListener("click", async e => {
-			e.preventDefault();
-			if ("dataLayer" in window) {
-				// eslint-disable-next-line no-undef
-				dataLayer.push({
-					event: "ga_event",
-					category: "Widget WhatsApp",
-					action: "Click WhatsApp",
-					label: "Click Icono"
-				});
-			}
-			if (navigator.share)
-				await navigator.share(this.shareData);
-			else
-				this.widget.classList.toggle("open");
-		});
-
+		const button = document.createRange().createContextualFragment(
+			`<button class="sh-w_b" title="${this.header.title}">
+			<span class="sh-w-i-share"></span>
+		</button>`);
 		return button;
 	}
+	async _click() {
+		if ("dataLayer" in window) {
+			// eslint-disable-next-line no-undef
+			dataLayer.push({
+				event: "ga_event",
+				category: "Widget WhatsApp",
+				action: "Click WhatsApp",
+				label: "Click Icono"
+			});
+		}
+		(navigator.share) ?
+			await navigator.share(this.shareData) :
+			this.widget.classList.toggle("open");
+
+	}
 	_header() {
-		const header = document.createElement("header");
-		const title = document.createElement("span");
-		header.classList.add("sh-w_h");
-		title.classList.add("sh-w_h_t");
-		title.innerHTML = this.title;
-		header.append(title);
-		return header;
+		return document.createRange().createContextualFragment(
+			`<header class="sh-w_h">
+			<span class="sh-w_h_t">${this.header.title}</span>
+		</header>`);
+	}
+	_networks() {
+		const networksContainer = document.createElement("section");
+		networksContainer.classList.add("sh-w_l");
+
+		this.networks.forEach(network =>
+			networksContainer.append(new ShareButton(network).render())
+		);
+		return networksContainer;
+	}
+	_setVariables() {
+		return `:root {
+			${(this.header.background.length) ? `--share-title-bg: ${this.header.background};` : ""}
+			${(this.button.color.length) ? `--share-icon-color: ${this.button.color};` : ""}
+		}`;
 	}
 	async _styles() {
 		const styles = document.createElement("style");
-		await fetch(`${this.url}@${this.version}/dist/css/share-widget.css`)
+		await fetch(`${this.url}@${this.version}/dist/css/${this.package}.css`)
 			.then(res => res.text())
 			.then(style => {
-				return styles.append(style);
+				styles.append(this._setVariables());
+				styles.append(style);
 			});
 		return document.head.append(styles);
 	}
-	_setVariables() {
-		if (this.backgroundTitle.length)
-			document.documentElement.style.setProperty("--share-title-bg", this.backgroundTitle);
-		if (this.colorIcon.length)
-			document.documentElement.style.setProperty("--share-icon-color", this.colorIcon);
-		if (this.colorTitle.length)
-			document.documentElement.style.setProperty("--share-title-color", this.colorTitle);
-	}
 	async render() {
-		if (!this.buttons.length) return;
-
 		await this._styles();
 
-		const buttonsContainer = document.createElement("section");
-		buttonsContainer.classList.add("sh-w_l");
+		const widget = document.createElement("div");
+		widget.classList.add("sh-w");
+		widget.append(this._header());
+		widget.append(this._networks());
+		widget.append(this._button());
 
-		this.buttons.forEach(button => buttonsContainer.append(new ShareButton(button).render()));
+		document.body.append(widget);
 
-		this.widget.classList.add("sh-w");
-		this.widget.append(this._header());
-		this.widget.append(buttonsContainer);
-		this.widget.append(this._button());
+		//button click
+		widget.querySelector(".sh-w_b").addEventListener("click", async e => {
+			e.preventDefault();
+			this._click();
+		});
 
-		document.body.append(this.widget);
+		return this.widget = widget;
+	}
+	get widget() {
+		return this.$widget;
+	}
+	set widget($element) {
+		this.$widget = $element;
 	}
 }
 class ShareButton {
@@ -135,7 +147,8 @@ class ShareButton {
 		this.button.append(title);
 		this.button.append(externalIcon);
 
-		this.button.addEventListener("click", () => {
+		this.button.addEventListener("click", e => {
+			e.preventDefault();
 			let url = "";
 			if ("dataLayer" in window) {
 				// eslint-disable-next-line no-undef
