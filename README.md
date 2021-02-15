@@ -17,7 +17,7 @@ Add this javascript at the end of your page:
                 w.parentNode.insertBefore(e, w)
             )
         }(window, document, "script", "https://cdn.jsdelivr.net/gh/miguelcolmenares/share-widget/dist/js/share-widget.js");
-        window.onload = function () {
+        window.addEventListener('load', function () {
             new shareWidget({
                 header: {
                     background: "#dd181c",
@@ -47,7 +47,7 @@ Add this javascript at the end of your page:
                         color: "#000"
                     }]
             })
-        };
+        });
     </script>
 ```
 ## Options
