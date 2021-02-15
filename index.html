@@ -19,10 +19,14 @@
         }(window, document, "script", "dist/js/share-widget.js");
         window.onload = function () {
             new shareWidget({
-                backgroundTitle: "#dd181c",
-                colorIcon: "#dd181c",
-                title: "Comparte en",
-                buttons: [{
+                header: {
+                    background: "#dd181c",
+                    title: "Share this on",
+                },
+                button: {
+                    color: "#dd181c"
+                },
+                networks: [{
                         network: "whatsapp",
                         name: "Whatsapp",
                         color: "#18e27a"

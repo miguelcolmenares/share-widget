@@ -16,13 +16,17 @@ Add this javascript at the end of your page:
                 w = h.getElementsByTagName(a)[0],
                 w.parentNode.insertBefore(e, w)
             )
-        }(window, document, "script", "https://cdn.jsdelivr.net/gh/miguelcolmenares/share-widget@latest/dist/js/share-widget.js");
+        }(window, document, "script", "https://cdn.jsdelivr.net/gh/miguelcolmenares/share-widget/dist/js/share-widget.js");
         window.onload = function () {
             new shareWidget({
-                backgroundTitle: "#dd181c",
-                colorIcon: "#dd181c",
-                title: "Comparte en",
-                buttons: [{
+                header: {
+                    background: "#dd181c",
+                    title: "Share this on",
+                },
+                button: {
+                    color: "#dd181c"
+                },
+                networks: [{
                         network: "whatsapp",
                         name: "Whatsapp",
                         color: "#18e27a"
@@ -46,51 +50,53 @@ Add this javascript at the end of your page:
         };
     </script>
 ```
-
 ## Options
-
-### backgroundTitle
-Type: `String`    
-Default: `""`
-
-### buttons
-Type: `Array`   
+#### button
+Type: `Object`  
+Default: `{}`
+#### header
+Type: `Object`  
+Default: `{}`
+#### networks
+Type: `Array`  
 Default: `[]`
 
-### colorIcon
+### Header Options
+#### background
+Type: `String`  
+Default: `""`
+#### color
 Type: `String`  
 Default: `""`
 
-### colorTitle
-Type: `String`
+### Button Options
+#### color
+Type: `String`  
 Default: `""`
 
-### title
-Type: `String`
+### Network Options
+#### color
+Type: `String`  
 Default: `""`
-
-## Button Options
-
-### color
-Type: `String`
+#### name
+Type: `String`  
 Default: `""`
-
-### name
-Type: `String`   
-Default: `""`
-
-### network
-Type: `String`      
-Default: `""`   
+#### network
+Type: `String`  
+Default: `""`  
 Posibble values: `email`, `facebook`, `twitter`, `whatsapp`
 
 ## Example:
 ```javascript
 new shareWidget({
-    backgroundTitle: "#dd181c",
-    colorIcon: "#dd181c",
-    title: "Comparte en",
-    buttons: [
+    header: {
+        background: "#dd181c",
+        title: "Share this on",
+    },
+    button: {
+        color: "#dd181c"
+    },
+    networks: [
     {
         network: "facebook",
         name: "Facebook",

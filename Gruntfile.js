@@ -69,6 +69,9 @@ module.exports = function (grunt) {
                         pattern: /\{\{(version)\}\}/igm,
                         replacement: "<%= pkg.version %>"
                     }, {
+                        pattern: /\{\{(package)\}\}/igm,
+                        replacement: "<%= pkg.name %>"
+                    }, {
                         pattern: /\{\{(url)\}\}/igm,
                         replacement: "<%= pkg.cdn %>"
                     }]
