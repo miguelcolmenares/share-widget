@@ -38,13 +38,19 @@ class ShareWidget {
 			// eslint-disable-next-line no-undef
 			dataLayer.push({
 				event: "ga_event",
-				category: "Widget WhatsApp",
-				action: "Click WhatsApp",
+				category: "Widget Share",
+				action: `Click Share ${(navigator.share) ? "mobile" : ""}`,
 				label: "Click Icono"
 			});
 		}
 		(navigator.share) ?
-			await navigator.share(this.shareData) :
+			// eslint-disable-next-line no-undef
+			await navigator.share(this.shareData).then(() => dataLayer.push({
+				event: "ga_event",
+				category: "Widget Share",
+				action: "Share mobile",
+				label: "mobile",
+			})) :
 			this.widget.classList.toggle("open");
 
 	}
