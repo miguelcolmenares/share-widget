@@ -16,7 +16,7 @@ class ShareWidget {
 		this.networks = networks,
 		this.package = "{{package}}",
 		this.shareData = {
-			title: encodeURI(document.title),
+			title: document.title,
 			url: window.location.href,
 		},
 		this.url = "{{url}}",
@@ -175,7 +175,7 @@ class ShareButton {
 					url = `https://www.facebook.com/sharer.php?display=popup&u=${this.shareData.url}&quote=${this.shareData.title}`;
 					break;
 				case "twitter":
-					url = `https://twitter.com/intent/tweet?text=${this.shareData.title}&url=${this.shareData.url}`;
+					url = `https://twitter.com/intent/tweet?text=${encodeURI(this.shareData.title)}&url=${this.shareData.url}`;
 					break;
 				case "whatsapp":
 					url = ((iphone || android) ? "whatsapp://send?" : "https://web.whatsapp.com/send?") + `text=${this.shareData.title} ${this.shareData.url}`;
