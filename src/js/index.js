@@ -88,14 +88,22 @@ class ShareWidget {
 	async render() {
 		await this._styles();
 
+		const isPDP = (document.querySelector("#js-AnchorGeneralTab") !== null) ? true : false;
 		const widget = document.createElement("div");
+		const widgetContainer = document.createElement("div");
 		widget.classList.add("sh-w");
+		widgetContainer.classList.add("sh-w_c");
+		if (isPDP) widget.classList.add("pdp");
 		if (navigator.share) widget.classList.add("native");
-		widget.append(this._header());
-		widget.append(this._networks());
+		widgetContainer.append(this._header());
+		widgetContainer.append(this._networks());
 		widget.append(this._button());
+		widget.append(widgetContainer);
 
-		document.body.append(widget);
+		if (isPDP)
+			document.querySelector(".js-gallery").append(widget);
+		else
+			document.body.append(widget);
 
 		//button click
 		widget.querySelector(".sh-w_b").addEventListener("click", async e => {
