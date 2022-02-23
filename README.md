@@ -51,41 +51,34 @@ Add this javascript at the end of your page:
         });
     </script>
 ```
-## Options
-#### button
-Type: `Object`  
-Default: `{}`
-#### header
-Type: `Object`  
-Default: `{}`
-#### networks
-Type: `Array`  
-Default: `[]`
+## Widget Options
+
+| Argument  | Type    | Default |
+| ----------|:--------:| ----:|
+| button    | `Object`  | `{}` |
+| header    | `Object`  | `{}` |
+| networks  | `Array`   | `[]` |
+
+
 
 ### Header Options
-#### background
-Type: `String`  
-Default: `""`
-#### color
-Type: `String`  
-Default: `""`
+
+| Argument  | Type    | Default |
+| ----------|:--------:| ----:|
+| background | `String` | `""` |
+| color     | `String` | `""` |
 
 ### Button Options
-#### color
-Type: `String`  
-Default: `""`
+| Argument  | Type    | Default |
+| ----------|:--------:| ----:|
+| color     | `String` | `""` |
 
 ### Network Options
-#### color
-Type: `String`  
-Default: `""`
-#### name
-Type: `String`  
-Default: `""`
-#### network
-Type: `String`  
-Default: `""`  
-Posibble values: `email`, `facebook`, `twitter`, `whatsapp`
+| Argument  | Type    | Default | Options |
+| ----------|:--------:| ----:| -------:|
+| color     | `String` | `""` | |
+| name      | `String` | `""` | |
+| network   | `String` | `""` |  `email`, `facebook`, `twitter`, `whatsapp` |
 
 ## Example:
 ```javascript
