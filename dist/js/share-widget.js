@@ -1,4 +1,4 @@
-/*! share-widget - v2.0.1 - 2022-02-18 */
+/*! share-widget - v2.0.1 - 2022-02-23 */
 "use strict";class ShareWidget{constructor({button:t={color:""},header:e={background:"",color:"",title:""},networks:a=[]}){this.button=t,this.header=e,this.networks=a,this.package="share-widget",this.shareData={title:document.title,url:window.location.href},this.url="https://cdn.jsdelivr.net/gh/miguelcolmenares/share-widget",this.version="2.0.1",this.$widget,this.networks.length&&(this._setVariables(),this.render())}_button(){return document.createRange().createContextualFragment(`<button class="sh-w_b" title="${this.header.title}">
 			<span class="sh-w-i-share"></span>
 		</button>`)}async _click(){"dataLayer"in window&&dataLayer.push({event:"ga_event",category:"Widget Share",action:"Click Share",label:"Click Icono"+(navigator.share?" mobile":"")}),navigator.share?await navigator.share(this.shareData).then(()=>dataLayer.push({event:"ga_event",category:"Widget Share",action:"Click Share",label:"mobile"})):this.widget.classList.toggle("open")}_header(){return document.createRange().createContextualFragment(`<header class="sh-w_h">
