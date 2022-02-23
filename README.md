@@ -1,6 +1,7 @@
 # Share widget 
+[![GitHub Actions Status Badge](https://github.com/miguelcolmenares/share-widget/workflows/CodeQL/badge.svg)](https://github.com/miguelcolmenares/share-widget/actions/workflows/codeql-analysis.yml)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/miguelcolmenares/share-widget) 
-![alt text](https://data.jsdelivr.com/v1/package/gh/miguelcolmenares/share-widget/badge "JsDelivr")
+[![](https://data.jsdelivr.com/v1/package/gh/miguelcolmenares/share-widget/badge?style=rounded)](https://www.jsdelivr.com/package/gh/miguelcolmenares/share-widget)
 
 > Add a floating widget to open Share options
 
