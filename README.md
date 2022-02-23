@@ -66,7 +66,7 @@ Add this javascript at the end of your page:
 | Argument  | Type    | Default |
 | ----------|:--------:| ----:|
 | background | `String` | `""` |
-| color     | `String` | `""` |
+| title     | `String` | `""` |
 
 ### Button Options
 | Argument  | Type    | Default |
