@@ -111,8 +111,8 @@ new shareWidget({
 This project is built with TypeScript and uses Webpack for bundling.
 
 ### Prerequisites
-- Node.js >= 16.0.0
-- npm >= 9.4.0
+- Node.js >= 20
+- npm >= 10
 
 ### Build
 ```bash
