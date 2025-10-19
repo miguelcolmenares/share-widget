@@ -5,6 +5,8 @@
 
 > Add a floating widget to open Share options
 
+**Note:** This project has been migrated to TypeScript for better type safety and maintainability, while maintaining the same API and functionality.
+
 ## Getting Started
 
 Add this javascript at the end of your page:
@@ -103,3 +105,29 @@ new shareWidget({
     }]
 })
 ```
+
+## Development
+
+This project is built with TypeScript and uses Webpack for bundling.
+
+### Prerequisites
+- Node.js >= 20
+- npm >= 10
+
+### Build
+```bash
+npm install
+npm run build
+```
+
+### Lint
+```bash
+npm run lint
+```
+
+### Project Structure
+- `src/ts/` - TypeScript source files
+- `src/types/` - TypeScript type definitions
+- `src/less/` - LESS stylesheets
+- `dist/` - Compiled output (CSS, JS, fonts)
+
